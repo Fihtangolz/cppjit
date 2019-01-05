@@ -1,0 +1,12 @@
+
+\.DS_Store
+
+\.history/
+
+\.idea/
+
+\.vscode/
+
+build/
+
+cmake-build-debug/
