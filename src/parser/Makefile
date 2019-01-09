@@ -1,13 +1,13 @@
 all: parser
 
 parser.tab.c parser.tab.h:	parser.y
-	bison -d parser.y --graph
+	/usr/local/Cellar/bison/3.2.4/bin/bison  -d -t parser.y --graph
 
 lex.yy.c: lexer.l parser.tab.h
-	flex lexer.l
+	flex lexer.l # -d for debug
 
 parser: lex.yy.c parser.tab.c parser.tab.h
-	clang -o parser parser.tab.c lex.yy.c -ll
+	/usr/local/Cellar/llvm/7.0.1/bin/clang -DYYDEBUG=1 -o parser parser.tab.c lex.yy.c -ll
 
 clean:
 	rm parser lex.yy.c parser.tab.c parser.tab.h
