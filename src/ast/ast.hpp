@@ -2,8 +2,8 @@
 #define FROSTMOURNE_AST_HPP
 
 #include <string>
+#include <memory>
 
-#include <boost/variant.hpp>
 #include <boost/variant.hpp>
 
 #include "scope.hpp"
@@ -12,16 +12,27 @@ class scope_t;
 
 namespace ast {
 
-class base_ast_node_t {
-};
-
 struct pointer_t;
 struct func_signature_t;
 struct type_t;
-enum class fd_types;
+struct binary_op_t;
+struct unary_op_t;
+struct ternary_op_t;
 
-template<typename ...Args>
-class ast_variant: boost::variant<Args...>, base_ast_node_t {};
+enum class fd_types {
+   _bool,
+   _int,
+   _float,
+   _double,
+   _char
+};
+
+enum class jump_t {
+    break_stm,
+    continue_stm,
+    return_stm,
+    goto_stm
+};
 
 using types_t = boost::variant<
     type_t*,
@@ -32,36 +43,29 @@ using types_t = boost::variant<
 using declaration_t = std::string;
 
 using expression_t = boost::variant<
-        pointer_t
-        //user-defined
-        //...
-        //perators::base_op_t
+    //std::unique_ptr<binary_op_t>,
+    //std::unique_ptr<unary_op_t>,
+    ternary_op_t*
 >;
 
 using statement_t = boost::variant<
-    //expression_t,
+    expression_t
     // compound_t,
     // selection_t,
     // iteration_t,
-    // jump_t,
-    declaration_t
-    // try_block_t,
+    //jump_t,
+    //declaration_t,
+    //try_block_t,
     // atomic_and_synchronized_blocks_t,
 >;
 
-enum class fd_types {
-   fd_bool,
-   fd_int,
-   fd_float,
-   fd_double,
-   fd_char
-};
+using statements_t = std::vector<ast::statement_t>;
 
 struct pointer_t {
 
 };
 
-struct type_t: base_ast_node_t {
+struct type_t {
     std::string name;
     std::map<std::string, type_t> variable;
     //std::map<func_t> member_func;
@@ -89,7 +93,7 @@ struct lambda_func_t {
     func_body_t body;
 };
 
-struct asm_stm_t: base_ast_node_t {
+struct asm_stm_t {
     std::string listing;
 };
 
@@ -197,25 +201,33 @@ enum class other {
     ternary // a ? b : c
 };
 
+enum class special {
+    _static_cast,
+    _dynamic_cast,
+    _const_cast,
+    _reinterpret_cast,
+    с_style_cast,
+    _new,
+    _delete,
+    _sizeof,
+    _sizeof_pp,
+    _typeid,
+    _noexcept,
+    _alignof
+};
+
 } // END OPERATORS
 
-struct binary_op_t: base_ast_node_t {
+struct binary_op_t {
     expression_t lhs, rhs;
 };
 
-struct unary_op_t: base_ast_node_t {
+struct unary_op_t {
     expression_t rhs;
 };
 
-struct ternary_op_t: base_ast_node_t {
+struct ternary_op_t {
     expression_t prdc, lhs, rhs;
-};
-
-enum class jump_t {
-    break_stm,
-    continue_stm,
-    return_stm,
-    goto_stm
 };
 
 struct for_t {

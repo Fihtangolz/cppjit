@@ -17,7 +17,7 @@ public:
     template<typename ...Args>
     void add_instance(Args... args);
     void add_visible_entity();
-
+    
     scope_t() = default;
     scope_t(scope_t* parent);
 };
