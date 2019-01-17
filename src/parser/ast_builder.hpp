@@ -7,10 +7,12 @@
 #include <memory>
 
 #include "boost/optional.hpp"
+#include "boost/variant.hpp"
 
 #include "../ast/scope.hpp"
 
 class ast_builder_t {
+    friend void ast_dump(const ast_builder_t& ast_builder) noexcept;
     friend class ast_consumer_t;
 
     scope_t global;
@@ -19,10 +21,11 @@ class ast_builder_t {
     std::queue<scope_t*> construction_queue;
 
     //TODO разобраться с namespace_table!! unique_ptr
+    std::unordered_map<std::string, ast::func_t> functions_table;
 public:
-    // ast_builder_t() {
-    //     construction_queue.push(&global);
-    // }
+    ast_builder_t() {
+        construction_queue.push(&global);
+    }
 
     auto open_namespace(std::string&& namespace_name) noexcept {
         auto result = namespace_table.emplace(
@@ -37,11 +40,9 @@ public:
     }    
 
     void open_namespace(std::vector<std::string>&& namespace_road) noexcept {
-        
     }
 
-    void add_func_declaration() noexcept {
-        
+    void open_function_definition() noexcept {
     }
 
     void leave_scope() noexcept {
@@ -51,10 +52,6 @@ public:
         }
     }
 };
-
-// void ast_dump() noexcept {
-
-// }
 
 #endif //FROSTMOURNE_AST_BUILDER_HPP
 

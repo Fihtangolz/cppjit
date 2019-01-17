@@ -25,6 +25,6 @@ enum class compiler_t {
     Clang
 };
 
-std::string magler(compiler_t compiler) noexcept {
+std::string magler(const compiler_t& compiler) noexcept {
     "_Z";
 }

@@ -1,3 +1,8 @@
-class rounte {
+#ifndef FROSTMOURNE_ROUTER_HPP
+#define FROSTMOURNE_ROUTER_HPP
+
+class router_t {
 
 };
+
+#endif //FROSTMOURNE_ROUTER_HPP

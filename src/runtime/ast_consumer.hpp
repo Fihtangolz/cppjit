@@ -5,6 +5,7 @@
 
 #include "../ast/scope.hpp"
 #include "../parser/ast_builder.hpp"
+#include "router.hpp"
 
 namespace action::assign {
     auto&& basic       = [](auto&& obj1, auto&& obj2){ return obj1 = obj2;   };
@@ -24,8 +25,8 @@ class ast_consumer_t {
     constexpr static std::string_view entry_point_name {"main"};
 
     scope_t global;
-    //router
-
+    
+    router_t router;
     //execution_stack;
 public:
     ast_consumer_t(ast_builder_t ast_builder){
