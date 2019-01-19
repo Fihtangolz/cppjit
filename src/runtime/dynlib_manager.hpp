@@ -1,6 +1,16 @@
 #include <dlfcn.h>
 
+#ifndef FROSTMOURNE_DYNLIB_MANAGER_HPP
+#define FROSTMOURNE_DYNLIB_MANAGER_HPP
+
 //runtime dynamic library caller
+class dynlib_manager {
+private:
+    demagler();
+public:
+    load(); 
+    find(); 
+};
 
 void test(){
     void* handle = dlopen("/Experiments/testings/libc++.1.0.dylib", RTLD_LAZY);
@@ -25,6 +35,7 @@ enum class compiler_t {
     Clang
 };
 
-std::string magler(const compiler_t& compiler) noexcept {
-    "_Z";
+std::string demagler(const compiler_t& compiler) noexcept {
 }
+
+#endif //FROSTMOURNE_DYNLIB_MANAGER_HPP
