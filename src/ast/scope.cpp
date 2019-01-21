@@ -1,5 +1,7 @@
 #include "scope.hpp"
 
+using namespace ast;
+
 template<typename ...Args>
 void scope_t::add_instance(Args... args){
     variables.emplace(args...);

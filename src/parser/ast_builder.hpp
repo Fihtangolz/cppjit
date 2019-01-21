@@ -15,10 +15,10 @@ class ast_builder_t {
     friend void ast_dump(const ast_builder_t& ast_builder) noexcept;
     friend class ast_consumer_t;
 
-    scope_t global;
-    std::unordered_map<std::string, scope_t*> namespace_table;
+    ast::scope_t global;
+    std::unordered_map<std::string, ast::scope_t*> namespace_table;
 
-    std::queue<scope_t*> construction_queue;
+    std::queue<ast::scope_t*> construction_queue;
 
     //TODO разобраться с namespace_table!! unique_ptr
     std::unordered_map<std::string, ast::func_t> functions_table;

@@ -6,12 +6,12 @@
 
 #include <boost/variant.hpp>
 
-#include "scope.hpp"
-
-class scope_t;
+#include "jump_stm.hpp"
+#include "func.hpp"
 
 namespace ast {
 
+class scope_t;
 struct pointer_t;
 struct func_signature_t;
 struct type_t;
@@ -27,12 +27,7 @@ enum class fd_types {
    _char
 };
 
-enum class jump_t {
-    break_stm,
-    continue_stm,
-    return_stm,
-    goto_stm
-};
+using identifier_t = std::string;
 
 using types_t = boost::variant<
     type_t*,
@@ -40,10 +35,8 @@ using types_t = boost::variant<
     func_signature_t*
 >;
 
-using identifier_t = std::string;
-
 struct declaration_t {
-    identifier_t type;
+    fd_types type; //TODO identifier_t type;
     identifier_t name;
 };
 
@@ -93,22 +86,6 @@ struct func_signature_t {
     std::vector<arg_t> args;
 }; 
 
-struct func_body_t {
-        scope_t* scope;
-        std::vector<statement_t> statements;
-};
-
-struct func_t {
-    identifier_t name;
-    func_signature_t* signature;
-    func_body_t body;
-};
-
-struct lambda_func_t {
-    func_signature_t* signature;
-    func_body_t body;
-};
-
 struct asm_stm_t {
     std::string listing;
 };
@@ -152,8 +129,8 @@ enum class all_t {
     bitwise_and,         // a & b 
     bitwise_or,          // a | b
     bitwise_xor,         // a ^ b
-    bitwise_left_shift,   // a >> b
-    bitwise_right_shift,  // a << b
+    bitwise_left_shift,  // a >> b
+    bitwise_right_shift, // a << b
 //inc_dec 
     inc_dec_pre_inc,     // ++a
     inc_dec_post_inc,    // a++
@@ -174,7 +151,7 @@ enum class all_t {
     member_of_obj,        // a.b
     member_of_ptr,        // a->b
     ptr_to_member_of_obj, // a.*b
-    ptr_to_member_of_ptr,  // a->*b
+    ptr_to_member_of_ptr, // a->*b
 //other 
     call,   // a(...)
     comma,  // a, b
@@ -194,70 +171,70 @@ enum class all_t {
     special_alignof
 };
 
-enum class binary_t {
-    //assign 
-    assign_basic,       // a = b
-    assign_add,         // a += b
-    assign_sub,         // a -= b
-    assign_mul,         // a *= b
-    assign_div,         // a /= b
-    assign_mod,         // a %= b
-    assign_and,         // a &= b
-    assign_or,          // a |= b
-    assign_xor,         // a ^= b
-    assign_left_shift,  // a <<= b
-    assign_right_shift, // a >>= b 
-    //cmp
-    cmp_eq,          // a == b
-    cmp_not_eq,      // a != b
-    cmp_less,        // a < b
-    cmp_grt,         // a > b
-    cmp_less_or_eq,  // a <= b
-    cmp_grt_or_eq,   // a >= b
-    cmp_twc,         // a <=> b
-    //logical 
-    logical_and,       //  a && b 
-    logical_or,        //  a || b
-    //bitwise 
-    bitwise_and,         // a & b 
-    bitwise_or,          // a | b
-    bitwise_xor,         // a ^ b
-    bitwise_left_shift,   // a >> b
-    bitwise_right_shift,  // a << b
-    //arithmetic 
-    arithmetic_un_plus,     // +a
-    arithmetic_un_minus,    // -a
-    arithmetic_add,         // a + b
-    arithmetic_sub,         // a - b
-    arithmetic_mul,         // a * b
-    arithmetic_div,         // a / b
-    arithmetic_mod,         // a % b
-};
-
-enum class unary_t {
-    //logical 
-    logical_not,       // !a
-    //bitwise 
-    bitwise_not,         // ~a 
-    //inc_dec 
-    inc_dec_pre_inc,     // ++a
-    inc_dec_post_inc,    // a++
-    inc_dec_pre_dec,     // --a
-    inc_dec_post_dec,    // a--
-    //arithmetic 
-    arithmetic_un_plus,     // +a
-    arithmetic_un_minus,    // -a
-};
-
 } //OPERATORS NAMESPACE
 
 struct binary_op_t {
-    operators::binary_t type;
+    enum binary_t {
+    //assign 
+        assign_basic,       // a = b
+        assign_add,         // a += b
+        assign_sub,         // a -= b
+        assign_mul,         // a *= b
+        assign_div,         // a /= b
+        assign_mod,         // a %= b
+        assign_and,         // a &= b
+        assign_or,          // a |= b
+        assign_xor,         // a ^= b
+        assign_left_shift,  // a <<= b
+        assign_right_shift, // a >>= b 
+    //cmp
+        cmp_eq,          // a == b
+        cmp_not_eq,      // a != b
+        cmp_less,        // a < b
+        cmp_grt,         // a > b
+        cmp_less_or_eq,  // a <= b
+        cmp_grt_or_eq,   // a >= b
+        cmp_twc,         // a <=> b
+    //logical 
+        logical_and,       //  a && b 
+        logical_or,        //  a || b
+    //bitwise 
+        bitwise_and,          // a & b 
+        bitwise_or,           // a | b
+        bitwise_xor,          // a ^ b
+        bitwise_left_shift,   // a >> b
+        bitwise_right_shift,  // a << b
+    //arithmetic 
+        arithmetic_un_plus,     // +a
+        arithmetic_un_minus,    // -a
+        arithmetic_add,         // a + b
+        arithmetic_sub,         // a - b
+        arithmetic_mul,         // a * b
+        arithmetic_div,         // a / b
+        arithmetic_mod,         // a % b
+    };
+
+    binary_t type;
     expression_t lhs, rhs;
 };
 
 struct unary_op_t {
-    operators::unary_t type;
+    enum unary_t {
+    //logical 
+        logical_not,         // !a
+    //bitwise 
+        bitwise_not,         // ~a 
+    //inc_dec 
+        inc_dec_pre_inc,     // ++a
+        inc_dec_post_inc,    // a++
+        inc_dec_pre_dec,     // --a
+        inc_dec_post_dec,    // a--
+    //arithmetic 
+        arithmetic_un_plus,     // +a
+        arithmetic_un_minus,    // -a
+    };
+
+    unary_t type;
     expression_t rhs;
 };
 
