@@ -5,16 +5,8 @@
 
 namespace ast {
 
-enum class jump_t {
-    break_stm,
-    continue_stm,
-    return_stm,
-    goto_stm
-};
-
 class goto_stm_t {
-    identifier_t label;
-    
+    // identifier_t label;
 }; 
 
 }

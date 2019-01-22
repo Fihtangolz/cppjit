@@ -10,3 +10,5 @@
 build/
 
 cmake-build-debug/
+TODO.md
+README.md

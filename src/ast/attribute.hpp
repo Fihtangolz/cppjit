@@ -1,0 +1,3 @@
+class attribute_t {
+
+};

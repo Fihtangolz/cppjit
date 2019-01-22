@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <cassert>
+#include <iterator>
 
-#include "ast.hpp"
+#include "base.hpp"
+#include "scope.hpp"
 
 namespace ast {
 
@@ -16,41 +18,47 @@ class taxonomy_t {
     };
     std::vector<std::pair<acces_modifiers_t, identifier_t>> base_clases;
 public:
-    
-};
+    class iterator_t : public std::iterator<
+                        std::input_iterator_tag,   // iterator_category
+                        long,                      // value_type
+                        long,                      // difference_type
+                        const long*,               // pointer
+                        long                       // reference
+                                            > {
+                                                
+    };
 
-class class_t {
-    identifier_t identifier;
-    std::unique_ptr<taxonomy_t> _taxonomy;
-    bool vs_final{false};
-    std::unique_ptr<scope_t> scope;
-public:
-    bool is_final() noexcept { //TODO const
-        return vs_final;
-    }
-
-    void set_final(bool&& new_value) noexcept {
-        vs_final = new_value;
-        assert(!identifier.empty() && "Unnamed class cannot be final");
-    }
-
-    identifier_t& get_identifier() noexcept { //TODO const 
-        return identifier;
-    }
-
-    void set_identifier(identifier_t& new_identifier) noexcept {
-        identifier = new_identifier;
-    }
-
-    taxonomy_t& taxonomy() const noexcept {
-        return *_taxonomy;
-    }
+    iterator_t begin() {}
+    iterator_t end() {}
 };
 
 class member_fun_t {
     void modifiers() noexcept {
         
     }
+};
+
+class class_t {
+    enum class type {
+        _struct,
+        _class,
+        _union
+    };
+
+    identifier_t identifier;
+    std::unique_ptr<taxonomy_t> _taxonomy;
+    bool vs_final{false}; 
+    std::unique_ptr<scope_t> scope;
+    type _type;
+public:
+
+    void set_type(type new_type) noexcept;
+    class_t::type type() noexcept;
+    bool is_final() const noexcept; 
+    void set_final(bool new_value) noexcept;
+    identifier_t& get_identifier() const noexcept; 
+    void set_identifier(identifier_t& new_identifier) noexcept;
+    taxonomy_t& taxonomy() const noexcept;
 };
 
 } //AST NAMESPACE 

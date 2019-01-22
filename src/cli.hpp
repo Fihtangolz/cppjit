@@ -1,6 +1,7 @@
 #ifndef FROSTMOURNE_CLI_HPP
 #define FROSTMOURNE_CLI_HPP
 
+#include <iostream>
 #include <cstdlib>
 
 #include <boost/program_options.hpp>

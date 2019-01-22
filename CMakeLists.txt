@@ -17,4 +17,4 @@ link_directories(${Boost_LIBRARY_DIR})
 
 add_executable(fmj ${SOURCE_FILES})
 
-TARGET_LINK_LIBRARIES(fmj LINK_PUBLIC ${Boost_LIBRARIES} )
+target_link_libraries(fmj LINK_PUBLIC ${Boost_LIBRARIES})
