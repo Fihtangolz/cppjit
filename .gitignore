@@ -9,6 +9,11 @@
 
 build/
 
+src/parser/
+
+tests/
+
 cmake-build-debug/
 TODO.md
 README.md
+
