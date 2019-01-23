@@ -47,11 +47,6 @@ enum class jump_t {
 
 using identifier_t = std::string;
 
-struct declaration_t {
-    fd_types type; 
-    identifier_t name;
-};
-
 class binary_op_t;
 class unary_op_t;
 class ternary_op_t;
@@ -67,12 +62,14 @@ using expression_t = boost::variant<
 class fd_type_t;
 
 using statement_t = boost::variant<
+    fd_type_t*,
+    //-----------------
+    fd_type_t*,
     expression_t,
     // compound_t,
     // selection_t,
     // iteration_t,
-    jump_t,
-    fd_type_t*
+    jump_t
     // try_block_t,
     // atomic_and_synchronized_blocks_t,
 >;

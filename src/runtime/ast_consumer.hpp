@@ -4,10 +4,15 @@
 #include <string>
 
 #include "../ast/ast.hpp"
-#include "../ast/scope.hpp"
 #include "../parser/ast_builder.hpp"
 #include "router.hpp"
 #include "../utils.hpp"
+
+struct trivial_ex_t { //TODO
+    void* destination;
+    std::size_t size;
+    //some....
+};
 
 class ast_consumer_t {
     constexpr static std::string_view entry_point_name {"main"};
@@ -39,36 +44,16 @@ namespace action::assign {
 }
 
 class operator_executor_t {
-    std::map<std::string, int> execution_stack; //TODO
+    std::vector<std::byte> execution_stack;
+    std::map<std::string, std::byte*> binds; 
 public:
-    void run() noexcept {
-        // auto&& test =  ast::statements_t{
-        //     new ast::binary_op_t{
-        //         ast::binary_op_t::assign_basic, 
-        //         new ast::identifier_t{"counter"},
-        //         new ast::literal_t{3}
-        //     },
-        //     new ast::binary_op_t{
-        //         ast::binary_op_t::assign_basic, 
-        //         new ast::identifier_t{"counter"},
-        //         new ast::literal_t{3}
-        //     },
-        // };
-
-        // ast::expression_t k;
-        // ast::binary_op_t* t;
-        // ast::identifier_t* l;
-        // for(auto&& stm : test){
-        //     k = boost::get<ast::expression_t>(stm);
-        //     t = boost::get<ast::binary_op_t*>(k);
-        //     if(t->type == ast::operators::binary_t::assign_basic){
-        //         l = boost::get<ast::identifier_t*>(t->lhs);
-        //         if(l){
-        //             std::cout << execution_stack[*l] << std::endl;
-        //         }
-        //     }
-
-        // }
+    void run(ast::statements_t& statements) noexcept {
+        ast::fd_type_t* fd_type; 
+        for(auto&& statement : statements){ 
+            if(fd_type = boost::get<ast::fd_type_t*>(statement)){
+                binds[fd_type->variable_name()]; 
+            }
+        }
     }
 };
 

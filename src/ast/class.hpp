@@ -46,6 +46,7 @@ class class_t {
     };
 
     identifier_t identifier;
+    std::vector<int> _members; //TODO replase int by
     std::unique_ptr<taxonomy_t> _taxonomy;
     bool vs_final{false}; 
     std::unique_ptr<scope_t> scope;
@@ -59,6 +60,8 @@ public:
     identifier_t& get_identifier() const noexcept; 
     void set_identifier(identifier_t& new_identifier) noexcept;
     taxonomy_t& taxonomy() const noexcept;
+    void members() const noexcept {}; //TODO
+    std::vector<member_fun_t>& member_functions() const noexcept {};
 };
 
 } //AST NAMESPACE 
