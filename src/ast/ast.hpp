@@ -1,5 +1,4 @@
 #include "class.hpp"
-#include "fat_pointer.hpp"
 #include "func.hpp"
 #include "jump_stm.hpp"
 #include "operators.hpp"

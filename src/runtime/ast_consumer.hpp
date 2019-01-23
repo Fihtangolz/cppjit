@@ -8,12 +8,6 @@
 #include "router.hpp"
 #include "../utils.hpp"
 
-struct trivial_ex_t { //TODO
-    void* destination;
-    std::size_t size;
-    //some....
-};
-
 class ast_consumer_t {
     constexpr static std::string_view entry_point_name {"main"};
 
