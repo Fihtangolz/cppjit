@@ -7,6 +7,7 @@
 
 #include "base.hpp"
 #include "scope.hpp"
+#include "func.hpp"
 
 namespace ast {
 
@@ -32,36 +33,34 @@ public:
     iterator_t end() {}
 };
 
-class member_fun_t {
-    void modifiers() noexcept {
-        
-    }
-};
-
 class class_t {
-    enum class type {
+    enum class class_type {
         _struct,
         _class,
         _union
     };
 
     identifier_t identifier;
-    std::vector<int> _members; //TODO replase int by
+    std::vector<defenition_t> _members; 
     std::unique_ptr<taxonomy_t> _taxonomy;
     bool vs_final{false}; 
     std::unique_ptr<scope_t> scope;
-    type _type;
+    class_type _type;
 public:
 
-    void set_type(type new_type) noexcept;
-    class_t::type type() noexcept;
-    bool is_final() const noexcept; 
+    void set_type(class_t::class_type new_type) noexcept;
+    class_t::class_type type() noexcept;
+    bool is_final() noexcept; //const
     void set_final(bool new_value) noexcept;
-    identifier_t& get_identifier() const noexcept; 
+    identifier_t& get_identifier() noexcept; //const
     void set_identifier(identifier_t& new_identifier) noexcept;
-    taxonomy_t& taxonomy() const noexcept;
-    void members() const noexcept {}; //TODO
-    std::vector<member_fun_t>& member_functions() const noexcept {};
+    taxonomy_t& taxonomy() noexcept; //const
+    std::vector<defenition_t>& members() noexcept { //TODO const
+        return _members;
+    };
+    // std::vector<member_fun_t>& member_functions() const noexcept {
+    //     return ;
+    // };
 };
 
 } //AST NAMESPACE 

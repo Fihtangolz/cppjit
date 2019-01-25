@@ -11,7 +11,7 @@ using namespace std::filesystem;
 
 //runtime dynamic library caller
 class dynlib_manager_t {
-
+    
 public:
     std::string demangler() noexcept { 
         std::string tested {"__ZNKSt3__18time_getIwNS_19istreambuf_iteratorIwNS_11char_traitsIwEEEEE17__get_weekdaynameERiRS4_S4_RjRKNS_5ctypeIwEE"};

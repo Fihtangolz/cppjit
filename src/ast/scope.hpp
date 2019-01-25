@@ -4,18 +4,22 @@
 #include <vector>
 #include <unordered_map>
 
+#include "defenition.hpp"
+
 namespace ast {
 
-//Определяет видимость definition (определений) 
+//Определяет видимость defenition (определений) 
 //TODO lazy types
+//TODO boost small vector?? 
+//TODO string, maybe char*? 
+//TODO google reall alloc mem size opt ?
+//TODO карта которая связывает идентификатор типа и дискриптор типа 
 class scope_t {
-    std::vector<scope_t*> visible; //TODO boost small vector?? 
-    //Карта которая связывает идентификатор типа и дискриптор типа 
-    std::unordered_map<std::string, types_t*> variables; //TODO string, maybe not? google reall alloc mem size opt ?
-    
+    std::vector<scope_t*> visible; 
+    std::unordered_map<std::string, defenition_t> defenition;  
 public:
-    void name_lookup() noexcept {
-        
+    void name_lookup() noexcept { //TODO: попробoвать ленивое разрешение или полное разрешение для юнита исполнения
+        assert("Declaration not found. The program is ill-formed.");
     }
     
     template<typename ...Args>

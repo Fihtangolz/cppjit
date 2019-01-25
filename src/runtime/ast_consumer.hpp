@@ -38,7 +38,7 @@ namespace action::assign {
 }
 
 class operator_executor_t {
-    std::vector<std::byte> execution_stack;
+    std::vector<std::byte> execution_stack; 
     std::map<std::string, std::byte*> binds; 
 public:
     void run(ast::statements_t& statements) noexcept {

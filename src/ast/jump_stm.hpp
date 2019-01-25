@@ -6,7 +6,7 @@
 namespace ast {
 
 class goto_stm_t {
-    // identifier_t label;
+    identifier_t label;
 }; 
 
 }

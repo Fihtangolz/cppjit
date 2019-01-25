@@ -25,7 +25,10 @@ enum class fd_types {
 //floating-point-types
 };
 
-struct func_signature_t;
+enum class jump_t {
+    break_stm,
+    continue_stm,
+};
 
 using literal_t = boost::variant< 
     int,
@@ -36,42 +39,54 @@ using literal_t = boost::variant<
 >;
 
 using types_t = boost::variant<
-    fd_types,
-    func_signature_t*
+    class fd_type_t*,
+    class defenition_class_t*,
+    class func_signature_t*
 >;
-
-enum class jump_t {
-    break_stm,
-    continue_stm,
-};
 
 using identifier_t = std::string;
 
-class binary_op_t;
-class unary_op_t;
-class ternary_op_t;
-
 using expression_t = boost::variant<
-    binary_op_t*,
-    unary_op_t*,
-    ternary_op_t*,
+    class binary_op_t*,
+    class unary_op_t*,
+    class ternary_op_t*,
     literal_t*,
     identifier_t*
 >;
 
-class fd_type_t;
+using defenition_t = boost::variant<
+    class defenition_class_t*,
+    class fd_type_t*,
+    class array_t*,
+    class pointer_t*,
+    class pointer_t*,
+    class references_t*,
+    class pointer_to_member_t*,
+    class class_t*
+>;
 
 using statement_t = boost::variant<
-    fd_type_t*,
-    //-----------------
-    fd_type_t*,
-    expression_t,
-    // compound_t,
-    // selection_t,
-    // iteration_t,
+//- defenitions -----------------
+    class defenition_class_t*,
+    class fd_type_t*,
+    class array_t*,
+    class pointer_t*,
+    class pointer_t*,
+    class references_t*,
+    class pointer_to_member_t*,
+    class class_t*,
+//- expression ------------------
+    class binary_op_t*,
+    class unary_op_t*,
+    class ternary_op_t*,
+    literal_t*,
+    identifier_t*,
+// compound_t,
+// selection_t,
+// iteration_t,
     jump_t
-    // try_block_t,
-    // atomic_and_synchronized_blocks_t,
+// try_block_t,
+// atomic_and_synchronized_blocks_t,
 >;
 
 using statements_t = std::vector<statement_t>;

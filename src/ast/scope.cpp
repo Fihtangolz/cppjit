@@ -4,7 +4,7 @@ using namespace ast;
 
 template<typename ...Args>
 void scope_t::add_instance(Args... args){
-    variables.emplace(args...);
+    defenition.emplace(args...);
 };
 
 void scope_t::add_visible_entity(){

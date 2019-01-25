@@ -30,3 +30,36 @@ public:
 };
 
 #endif //FROSTMOURNE_ROUTER_HPP
+
+/*  
+int kekich(){
+    int cals1 = 42+f1(); 
+    int cals = 200+f2();
+*/
+
+// Code example
+
+// int k;
+// std::cin >> k; //90
+// int m=0;
+// .....
+
+// while 1000000
+
+// if(k > 1000){ //
+//    k = k-1
+// }else(k < 100){
+//     k = k+3;
+//     m = m+2;    
+// }
+
+//     k = k+3; 93
+//     k = k+3; 96    
+//     k = k+3; 99 <-|
+//     k = k+3; 102  |
+//     k = k-1       |
+//     k = k-1       |
+//     k = k-1       |  
+//     k = k+3; 99 --|
+    
+//     100000%8
