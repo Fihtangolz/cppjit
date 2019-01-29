@@ -3,6 +3,7 @@ project(frostmourne)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE off)
+set(CMAKE_CXX_FLAGS "-g2 -D_GLIBCXX_DEBUG")
 
 set(Boost_INCLUDE_DIR /usr/local/Cellar/boost/1.65.0/include/) 
 set(Boost_LIBRARY_DIR /usr/local/Cellar/boost/1.65.0/lib/)

@@ -32,9 +32,15 @@ public:
 #endif //FROSTMOURNE_ROUTER_HPP
 
 /*  
+TODO: in doc 
+
 int kekich(){
     int cals1 = 42+f1(); 
     int cals = 200+f2();
+
+    if(false){
+        std::cout << cals1 + cals << std::endl;
+    }
 */
 
 // Code example

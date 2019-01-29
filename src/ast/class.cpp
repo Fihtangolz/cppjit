@@ -10,7 +10,7 @@ class_t::class_type class_t::type() noexcept {
     return _type;
 }
 
-bool class_t::is_final() noexcept { //TODO const
+bool class_t::is_final() noexcept { 
     return vs_final;
 }
 

@@ -5,7 +5,8 @@ namespace ast { //::operators
 
 struct binary_op_t {
     enum class binary_t {
-        basic,       // a = b
+    //assignment
+        basic,        // a = b
         _add,         // a += b
         _sub,         // a -= b
         _mul,         // a *= b
@@ -16,6 +17,12 @@ struct binary_op_t {
         _xor,         // a ^= b
         left_shift,   // a <<= b
         right_shift,  // a >>= b 
+    //arithmetic 
+        arithmetic_add,         // a + b
+        arithmetic_sub,         // a - b
+        arithmetic_mul,         // a * b
+        arithmetic_div,         // a / b
+        arithmetic_mod,         // a % b
     };
     // //cmp
     //     cmp_eq,          // a == b
@@ -34,14 +41,6 @@ struct binary_op_t {
     //     bitwise_xor,          // a ^ b
     //     bitwise_left_shift,   // a >> b
     //     bitwise_right_shift,  // a << b
-    // //arithmetic 
-    //     arithmetic_un_plus,     // +a
-    //     arithmetic_un_minus,    // -a
-    //     arithmetic_add,         // a + b
-    //     arithmetic_sub,         // a - b
-    //     arithmetic_mul,         // a * b
-    //     arithmetic_div,         // a / b
-    //     arithmetic_mod,         // a % b
     
     binary_t type;  
     expression_t lhs, rhs;
@@ -66,6 +65,10 @@ struct unary_op_t {
     unary_t type;
     expression_t rhs;
 
+};
+
+struct func_call_t {
+    
 };
 
 struct ternary_op_t {

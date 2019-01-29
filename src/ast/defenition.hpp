@@ -5,7 +5,7 @@
 
 #include "base.hpp"
 
-namespace ast { 
+namespace ast { //TODO defenition 
 
 struct defenition_class_t {
     identifier_t type; 

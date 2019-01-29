@@ -21,7 +21,7 @@ class ast_builder_t {
     std::queue<ast::scope_t*> construction_queue;
 
     //TODO разобраться с namespace_table!! unique_ptr
-    std::unordered_map<std::string, ast::func_t> functions_table;
+    // std::unordered_map<std::string, ast::func_t> functions_table;
 public:
     ast_builder_t() {
         construction_queue.push(&global);

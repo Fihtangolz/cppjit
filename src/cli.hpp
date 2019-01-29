@@ -8,7 +8,7 @@
 
 namespace po = boost::program_options;
 void parse_args(int& argc, char* argv[], po::variables_map& opt) noexcept {
-    try {
+    try{
         po::options_description desc("Allowed options");
         desc.add_options()
             ("help", "produce help message");
@@ -20,12 +20,10 @@ void parse_args(int& argc, char* argv[], po::variables_map& opt) noexcept {
             std::cout << desc << "\n";
             std::exit(EXIT_SUCCESS);
         }
-    }
-    catch(std::exception& e) {
+    }catch(std::exception& e){
         std::cerr << "error: " << e.what() << "\n";
         std::exit(EXIT_FAILURE);
-    }
-    catch(...) {
+    }catch(...){
         std::cerr << "Exception of unknown type!\n";
     }
 }

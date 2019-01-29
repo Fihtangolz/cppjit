@@ -1,7 +1,6 @@
 #ifndef FROSTMOURNE_FUNC_HPP
 #define FROSTMOURNE_FUNC_HPP
 
-#include "base.hpp"
 #include "scope.hpp"
 
 namespace ast {

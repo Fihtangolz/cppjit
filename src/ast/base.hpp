@@ -30,13 +30,14 @@ enum class jump_t {
     continue_stm,
 };
 
-using literal_t = boost::variant< 
-    int,
-    char,
-    float,
-    char*,
-    bool
->;
+using literal_t = int;
+// = boost::variant< 
+//     int,
+//     char,
+//     float,
+//     char*,
+//     bool
+// >;
 
 using types_t = boost::variant<
     class fd_type_t*,
@@ -50,8 +51,9 @@ using expression_t = boost::variant<
     class binary_op_t*,
     class unary_op_t*,
     class ternary_op_t*,
-    literal_t*,
-    identifier_t*
+    class func_call_t*, //Terminator
+    literal_t,          //Terminator
+    identifier_t*       //Terminator
 >;
 
 using defenition_t = boost::variant<
@@ -66,7 +68,7 @@ using defenition_t = boost::variant<
 >;
 
 using statement_t = boost::variant<
-//- defenitions -----------------
+//- defenitions --------------------
     class defenition_class_t*,
     class fd_type_t*,
     class array_t*,
@@ -75,18 +77,19 @@ using statement_t = boost::variant<
     class references_t*,
     class pointer_to_member_t*,
     class class_t*,
-//- expression ------------------
+//- expression ---------------------
+    class func_call_t*,
     class binary_op_t*,
     class unary_op_t*,
     class ternary_op_t*,
     literal_t*,
     identifier_t*,
-// compound_t,
-// selection_t,
-// iteration_t,
+//- compound -----------------------
+//- selection ----------------------
+//- iteration ----------------------
     jump_t
-// try_block_t,
-// atomic_and_synchronized_blocks_t,
+//- try_block ----------------------
+//- atomic_and_synchronized_blocks -
 >;
 
 using statements_t = std::vector<statement_t>;
