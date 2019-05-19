@@ -19,6 +19,7 @@ class scope_t {
     std::unordered_map<std::string, defenition_t> defenition;  
 public:
     void name_lookup() noexcept { //TODO: попробoвать ленивое разрешение или полное разрешение для юнита исполнения
+        
         assert("Declaration not found. The program is ill-formed.");
     }
     

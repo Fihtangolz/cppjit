@@ -5,26 +5,11 @@
 
 #include "base.hpp"
 
-namespace ast { //TODO defenition 
+namespace ast { //TODO: namespace definition
 
 struct defenition_class_t {
     identifier_t type; 
     identifier_t name;
-};
-
-class fd_type_t {
-    fd_types _type;
-    identifier_t _variable_name;
-public:
-    fd_type_t(fd_types type, identifier_t variable_name):_type(type), _variable_name(variable_name){}
-
-    identifier_t& variable_name() noexcept {
-        return _variable_name;
-    }
-
-    std::size_t memsize() noexcept {
-        return sizeof(int);
-    }
 };
 
 struct array_t {

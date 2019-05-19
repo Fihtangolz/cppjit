@@ -5,10 +5,10 @@
 
 namespace ast {
 
-class goto_stm_t {
+class goto_stm_t : base_node_t {
     identifier_t label;
 }; 
 
-}
+} //AST NAMESPACE
 
 #endif //FROSTMOURNE_JUMP_STM_HPP

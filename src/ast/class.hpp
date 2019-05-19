@@ -17,7 +17,7 @@ class taxonomy_t {
         _private,
         _protected
     };
-    std::vector<std::pair<acces_modifiers_t, identifier_t>> base_clases;
+    std::vector<std::pair<acces_modifiers_t, class_t>> base_clases;
 public:
     class iterator_t : public std::iterator<
                         std::input_iterator_tag,   // iterator_category
@@ -55,12 +55,8 @@ public:
     identifier_t& get_identifier() noexcept; //const
     void set_identifier(identifier_t& new_identifier) noexcept;
     taxonomy_t& taxonomy() noexcept; //const
-    std::vector<defenition_t>& members() noexcept { //TODO const
-        return _members;
-    };
-    // std::vector<member_fun_t>& member_functions() const noexcept {
-    //     return ;
-    // };
+    std::vector<defenition_t>& members() const noexcept;
+    std::vector<member_fun_t>& member_functions() const noexcept;
 };
 
 } //AST NAMESPACE 

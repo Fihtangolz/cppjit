@@ -30,3 +30,11 @@ void class_t::set_identifier(identifier_t& new_identifier) noexcept {
 taxonomy_t& class_t::taxonomy() noexcept {
     return *_taxonomy;
 }
+
+std::vector<defenition_t>& class_t::members() const noexcept {
+    return _members;
+};
+
+std::vector<member_fun_t>& class_t::member_functions() const noexcept {
+    return ;
+};

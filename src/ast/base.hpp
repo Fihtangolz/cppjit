@@ -9,35 +9,10 @@
 
 namespace ast {
 
-enum class fd_types {
-//signed integer types 6.7.1
-    _signed_char,
-    _short_int,
-    _int,
-    _long_int,
-    _long_long_int,
-//standard unsigned integer type 6.7.1
-    _unsigned_char,
-    _unsigned_short_int,
-    _unsigned_int,
-    _unsigned_long_int,
-    _unsigned_long_long_int,
-//floating-point-types
-};
-
 enum class jump_t {
     break_stm,
     continue_stm,
 };
-
-using literal_t = int;
-// = boost::variant< 
-//     int,
-//     char,
-//     float,
-//     char*,
-//     bool
-// >;
 
 using types_t = boost::variant<
     class fd_type_t*,
@@ -60,7 +35,6 @@ using defenition_t = boost::variant<
     class defenition_class_t*,
     class fd_type_t*,
     class array_t*,
-    class pointer_t*,
     class pointer_t*,
     class references_t*,
     class pointer_to_member_t*,
@@ -85,14 +59,22 @@ using statement_t = boost::variant<
     literal_t*,
     identifier_t*,
 //- compound -----------------------
+
 //- selection ----------------------
+
 //- iteration ----------------------
     jump_t
 //- try_block ----------------------
+
 //- atomic_and_synchronized_blocks -
 >;
 
 using statements_t = std::vector<statement_t>;
+
+using parameter_list_t = std::vector<>;
+
+using attribute_t = std::string;
+using attributes_t = std::array<attribute_t>;
 
 } //AST NAMESPACE 
 
