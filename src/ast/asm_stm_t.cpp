@@ -1,7 +1,9 @@
 #include "asm_stm_t.hpp"
 
-attributes_t& asm_stm_t::attributes() const {
-    return attributes_t;
+using namespace ast;
+
+attributes_t& asm_stm_t::attributes() {
+    return _attributes;
 }
 
 std::string asm_stm_t::listing() const {

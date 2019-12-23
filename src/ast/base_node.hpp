@@ -13,8 +13,8 @@ struct position_t {
 class base_node_t {
 public:
     position_t& position() const;
-    virtual std::string&& stringify() const = 0;
-    virtual dump() const = 0;
+    virtual std::string stringify() const;
+    virtual std::string dump() const;
 };
 
 } //AST NAMESPACE

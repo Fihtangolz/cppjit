@@ -1,10 +1,16 @@
 #ifndef FROSTMOURNE_FD_TYPE_T_HPP
 #define FROSTMOURNE_FD_TYPE_T_HPP
 
+#include "base.hpp"
+#include "base_node.hpp"
 
 namespace ast {
 
 enum class fd_types {
+    _wchar_t,
+    _char16_t,
+    _char32_t,
+    _char,
     _void,
     _nullptr_t,
     _bool,

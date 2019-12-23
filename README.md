@@ -1,18 +1,26 @@
 Frostmourne
 
+Build 
+
+CC=/usr/local/Cellar/llvm/7.0.1/bin/clang CXX=/usr/local/Cellar/llvm/7.0.1/bin/clang++ cmake -B./build/ -H./
+
 <!-- <img src="logo.jpg?" alt="drawing" width="250" height="300"/>  -->
 
-Referense:
+Referense to introduction of dragons world:
+
+It is simple short overview list of most useful referense about compilers/interpreters/jit-compilers/parsers/virtual machine/binary translator and etc.
+
+
+Advanced Design and Implementation of Virtual Machines
+Compiler Construction: 18th International Conference, CC 2009, Held as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2009, York, UK, March 22-29, 2009, Proceedings
+
 http://cppgm.org
 https://llvm.org/docs/index.html
 
-http://refspecs.linuxfoundation.org/cxxabi-1.75.html
-Linkers:
-    https://www.iecc.com/linker/
-C/C++ mangling:
-    http://www.int0x80.gr/papers/name_mangling.pdf
-
 Books:
+Advanced Design and Implementation of Virtual Machines
+Compiler Construction
+//---
 Aho. Lam. Sethi. Compilers: Principles, Techniques, and Tools 
 Robin B. Hunter  Compilers: Their Design and Construction  
 Bruno Cardoso Lopes Rafael Auler  Getting Started with LLVM Core Libraries 

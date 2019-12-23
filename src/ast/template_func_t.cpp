@@ -10,14 +10,14 @@ void template_func_t::set_identifier(const identifier_t&& new_identifier) {
     _identifier = new_identifier;
 }
 
-parameter_list_t& template_func_t::parameter_list() const {
-    return _parameter_list;
+template_args_t& template_func_t::template_args()  {
+    return _template_args;
 }
 
 func_signature_t& template_func_t::signature() const {
     return *_signature;
 }
 
-func_body_t& template_func_t::body() const {
+func_body_t& template_func_t::body() {
     return _body;
 }

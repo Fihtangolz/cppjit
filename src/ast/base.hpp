@@ -4,15 +4,10 @@
 
 #include <string>
 #include <memory>
-
+#include "literal_t.hpp"
 #include <boost/variant.hpp>
 
 namespace ast {
-
-enum class jump_t {
-    break_stm,
-    continue_stm,
-};
 
 using types_t = boost::variant<
     class fd_type_t*,
@@ -31,50 +26,11 @@ using expression_t = boost::variant<
     identifier_t*       //Terminator
 >;
 
-using defenition_t = boost::variant<
-    class defenition_class_t*,
-    class fd_type_t*,
-    class array_t*,
-    class pointer_t*,
-    class references_t*,
-    class pointer_to_member_t*,
-    class class_t*
->;
 
-using statement_t = boost::variant<
-//- defenitions --------------------
-    class defenition_class_t*,
-    class fd_type_t*,
-    class array_t*,
-    class pointer_t*,
-    class pointer_t*,
-    class references_t*,
-    class pointer_to_member_t*,
-    class class_t*,
-//- expression ---------------------
-    class func_call_t*,
-    class binary_op_t*,
-    class unary_op_t*,
-    class ternary_op_t*,
-    literal_t*,
-    identifier_t*,
-//- compound -----------------------
-
-//- selection ----------------------
-
-//- iteration ----------------------
-    jump_t
-//- try_block ----------------------
-
-//- atomic_and_synchronized_blocks -
->;
-
-using statements_t = std::vector<statement_t>;
-
-using parameter_list_t = std::vector<>;
+using template_args_t = std::vector<int>; //TODO
 
 using attribute_t = std::string;
-using attributes_t = std::array<attribute_t>;
+using attributes_t = std::vector<attribute_t>;
 
 } //AST NAMESPACE 
 

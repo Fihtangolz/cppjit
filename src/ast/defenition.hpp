@@ -7,6 +7,16 @@
 
 namespace ast { //TODO: namespace definition
 
+using defenition_t = boost::variant<
+    class defenition_class_t*,
+    class fd_type_t*,
+    class array_t*,
+    class pointer_t*,
+    class references_t*,
+    class pointer_to_member_t*,
+    class class_t*
+>;
+
 struct defenition_class_t {
     identifier_t type; 
     identifier_t name;

@@ -2,6 +2,6 @@
 
 using namespace ast;
 
-void modifiers() noexcept {
+void member_fun_t::specifiers() noexcept {
 
 }

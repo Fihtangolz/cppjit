@@ -8,8 +8,7 @@ template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
 template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
 template <typename T, typename... Ts>
-bool holds_alternative(const boost::variant<Ts...>& v) noexcept
-{
+bool holds_alternative(const boost::variant<Ts...>& v) noexcept{
     return boost::get<T>(&v) != nullptr;
 }
 

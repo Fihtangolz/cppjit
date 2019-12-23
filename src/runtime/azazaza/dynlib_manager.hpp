@@ -9,8 +9,8 @@
 
 using namespace std::filesystem;
 
-//runtime dynamic library caller
-class dynlib_manager_t {
+//Runtime dynamic library caller
+class DynlibManager {
     
 public:
     std::string demangler() noexcept { 

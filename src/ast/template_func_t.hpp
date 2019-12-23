@@ -4,20 +4,21 @@
 #include "scope.hpp"
 #include "func.hpp"
 #include "base_node.hpp"
+#include "func_body_t.hpp"
 
 namespace ast {
 
 class template_func_t : base_node_t {
-    parameter_list_t _parameter_list;
+    template_args_t _template_args;
     identifier_t _identifier;
     func_signature_t* _signature;
     func_body_t _body;
 public:
     std::string identifier() const;
     void set_identifier(const identifier_t&& new_identifier);
-    parameter_list_t& template_args() const; //TODO: переимянование шаблонные параметры
+    template_args_t& template_args();
     func_signature_t& signature() const;
-    func_body_t& body() const;
+    func_body_t& body();
 
     template_func_t(
         const types_t& return_type,
